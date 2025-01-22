@@ -1,0 +1,83 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 15px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    z-index: 1;
+  }
+
+.sidebar-title{
+  color: #202020;
+  font-size: 24px;
+  padding-left: 8px;
+  cursor: pointer;
+}
+
+  .sidebar.extended {
+    width: 250px;
+    background-color: #f0f4f9;
+  }
+  
+  .sidebar img {
+    width: 20px;
+  }
+  
+  
+  .sidebar .recent {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s;
+  }
+  
+  .sidebar .recent-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .recent-entry {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right: 40px;
+    border-radius: 50px;
+    color: #202020;
+    cursor: pointer;
+    align-items: center;
+  }
+  
+  .sidebar .recent-entry:hover {
+    background-color: #e2e6eb;
+  }
+  
+  .sidebar .bottom {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .bottom-item {
+    padding-right: 10px;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .backdrop.show {
+    display: block;
+  }
+  
+
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+    
+}
