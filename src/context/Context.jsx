@@ -62,8 +62,6 @@ const ContextProvider = (props) => {
                 { headers: { token } }
             );
 
-            
-
             if (data.success) {
                 loadCreditsData();
                 return data.playlist; // Return the playlist string here
@@ -79,6 +77,30 @@ const ContextProvider = (props) => {
             toast.error(error.message);
         }
     };
+
+    const reGeneratePlaylist = async (prompt) => {
+        try {
+            const { data } = await axios.post(
+                backendUrl + '/api/playlist/regenerate-playlist',
+                { prompt },
+                { headers: { token } }
+            );
+
+            if (data.success) {
+                loadCreditsData();
+                return data.playlist; // Return the playlist string here
+            } else {
+                toast.error(data.message);
+                loadCreditsData();
+                if (data.creditBalance === 0) {
+                    navigate('/credits');
+                }
+            }
+        } catch (error) {
+            console.error("Error in reGeneratePlaylist:", error);
+            toast.error(error.message);
+        }
+    }
 
     const loadCreditsData = async () => {
         try {
@@ -133,6 +155,7 @@ const ContextProvider = (props) => {
         loadCreditsData,
         logout,
         generatePlaylist,
+        reGeneratePlaylist,
         selectedSongs, // Add selectedSongs to context
         setSelectedSongs, // Add setSelectedSongs to context
     };
