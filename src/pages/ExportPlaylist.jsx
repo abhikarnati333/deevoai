@@ -139,7 +139,7 @@ const ExportToSpotify = () => {
       <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020]">
         <div className="flex items-center">
           {/* <img className="h-[25px] w-[25px] mr-[7px] cursor-pointer lg:hidden hover:opacity-65"  src={assets.menu_icon} alt="Menu Icon" /> */}
-          <p className="italic">Deevo</p>
+          <p onClick={() => {navigate("/")}} className="italic cursor-pointer">Deevo</p>
         </div>
         {user ? (
           <div className="flex items-center gap-2 sm:gap-3">
@@ -165,7 +165,7 @@ const ExportToSpotify = () => {
               onClick={() => {setShowLogin(true); navigate('/')}}
               className="bg-[#202020] text-white px-7 py-1 rounded-full text-lg hover:opacity-65"
             >
-              Log in
+              Get Started
             </button>
             {/* <button onClick={()=>setShowLogin("Sign Up")} className="bg-[#f0f4f9] text-[#202020] px-7 py-1 rounded-full text-lg hover:opacity-65">Sign Up</button> */}
           </div>

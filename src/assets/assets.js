@@ -29,6 +29,8 @@ import mockup2 from './mockup2.png'
 import mockup3 from './mockup3.png'
 import arrowdown_icon from './arrowdown_icon.png'
 import arrowdownwhite_icon from './arrowdownwhite_icon.png'
+import regenerate_icon from './regenerate_icon.png'
+import gradient_image from './gradient_image.png'
 
 
 export const assets = {
@@ -62,25 +64,27 @@ export const assets = {
     mockup2,
     mockup3,
     arrowdown_icon,
-    arrowdownwhite_icon
+    arrowdownwhite_icon,
+    regenerate_icon,
+    gradient_image
 }
 
 export const plans = [
     {
         id: 'Starter',
-        price: 2.49,
+        price: 2.59,
         credits: 3,
         desc: 'Perfect for casual users who want to explore features at a low cost.'
     },
     {
         id: 'Explorer [Popular]',
-        price: 5.49,
+        price: 5.59,
         credits: 10,
         desc: 'Designed for frequent users seeking great value and more options.'
     },
     {
         id: 'Pro',
-        price: 14.49,
+        price: 14.59,
         credits: 35,
         desc: 'Tailored for consistent users who rely on our service for regular needs.'
     }

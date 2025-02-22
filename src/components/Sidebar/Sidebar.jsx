@@ -68,9 +68,9 @@ const Sidebar = () => {
             <img src={assets.upgrade_icon} alt="Help Icon" />
             {extended ? <p>Buy Credits</p> : null}
           </div>
-          <div onClick={() => toast.info("Community Available Soon")} className="bottom-item recent-entry">
+          <div onClick={() => navigate('/soundwaves')} className="bottom-item recent-entry">
             <img src={assets.community_icon} alt="Community Icon" />
-            {extended ? <p>Community</p> : null}
+            {extended ? <p>Soundwaves</p> : null}
           </div>
           <div onClick={openSettings} className="bottom-item recent-entry">
             <img src={assets.setting_icon} alt="Settings Icon" />

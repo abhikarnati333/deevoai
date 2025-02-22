@@ -140,6 +140,7 @@ const Login = () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                minLength={8}
                 className="outline-none text-sm"
                 placeholder="Password"
                 type="password"

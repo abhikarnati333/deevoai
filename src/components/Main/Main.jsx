@@ -5,10 +5,12 @@ import { Context } from "../../context/Context";
 import Result from "../Result/Result";
 import Settings from "../Settings/Settings";
 import AdvancedOptions from "../AdvancedOptions/AdvancedOptions";
+import Contact from "../Contact/Contact";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const Main = () => {
-    const { onSent, recentPrompt, showResult, loading, resultData, setInput, input, user, setShowLogin, navigate, credit } = useContext(Context);
+    const { onSent, recentPrompt, showResult, loading, resultData, setInput, input, user, setShowLogin, navigate, credit, regenerate, isVisible } = useContext(Context);
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && input.trim() !== "") {
@@ -19,6 +21,7 @@ const Main = () => {
     const [isCardModalOpen, setisCardModalOpen] = useState(false);
     const [isSettingsOpen, setisSettingsOpen] = useState(false);
     const [isAdvancedOptionsOpen, setisAdvancedOptionsOpen] = useState(false);
+    const [isContactOpen, setisContactOpen] = useState(false);
 
     const openCardModal = () => setisCardModalOpen(true);
     const closeCardModal = () => setisCardModalOpen(false);
@@ -29,6 +32,9 @@ const Main = () => {
     const openAdvancedOptions = () => setisAdvancedOptionsOpen(true);
     const closeAdvancedOptions = () => setisAdvancedOptionsOpen(false);
 
+    const openContact = () => setisContactOpen(true);
+    const closeContact = () => setisContactOpen(false);
+
     const handleCardClick = (text) => {
         setInput(text);
         closeCardModal();
@@ -37,10 +43,12 @@ const Main = () => {
 
     return (
         <div className="flex-1 min-h-screen relative">
+            <Settings isOpen={isSettingsOpen} closeMenu={closeSettingsMenu} />
+            <Contact isOpen={isContactOpen} closeMenu={closeContact} />
             <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020]">
                 <div className="flex items-center">
                     {/* <img className="h-[25px] w-[25px] mr-[7px] cursor-pointer lg:hidden hover:opacity-65"  src={assets.menu_icon} alt="Menu Icon" /> */}
-                    <p className="italic">Deevo</p>    
+                    <p onClick={() => {navigate("/")}} className="italic cursor-pointer">Deevo</p>    
                 </div>
                 {
                 user ?
@@ -65,7 +73,7 @@ const Main = () => {
                 }
                 
 
-                <Settings isOpen={isSettingsOpen} closeMenu={closeSettingsMenu} />
+                
             </div>
 
             <div className="max-w-[900px] m-auto">
@@ -143,7 +151,7 @@ const Main = () => {
                         </div>
                         <div className=" search-box fixed bottom-0 w-full max-w-[900px] mx-auto my-[15px] px-5 py-0">
                             {user ? 
-                            <div className=" flex items-center justify-between gap-5 bg-[#f0f4f9] px-5 py-2 sm:py-2.5 rounded-[50px] ">
+                            <div className=" flex items-center justify-between gap-5 bg-[#f0f4f9] px-5 py-2 sm:py-2.5 rounded-full ">
 
                                 <input
                                     onChange={(e) => setInput(e.target.value)}
@@ -153,14 +161,15 @@ const Main = () => {
                                     className="flex-none bg-transparent text-md sm:text-lg p-2 border-[none] outline-[none] w-[52vw] sm:w-auto sm:flex-1"
                                 />
                                 <div className="flex flex-row gap-1">
-                                    <img onClick={() => toast.info("Advanced Options Available Soon")} className="w-10 sm:w-11 p-2  flex items-center justify-center cursor-pointer hover:opacity-65" src={assets.customize_icon} alt="" />
+                                    <img id="advanced-options" onClick={() => toast.info("Advanced Options Available Soon")} className="w-10 sm:w-11 p-2  flex items-center justify-center cursor-pointer hover:opacity-65" src={assets.customize_icon} alt="" />
+                                    <Tooltip anchorSelect="#advanced-options" content="Advanced Options"/>
                                     {input ? <img className="w-10 sm:w-11 p-2 bg-black rounded-full flex items-center justify-center cursor-pointer hover:opacity-65" onClick={() => onSent()} src={assets.send_arrow} alt="" /> : null}
                                 </div>
 
                                 <AdvancedOptions isOpen={isAdvancedOptionsOpen} closeMenu={closeAdvancedOptions} />
                             </div>
                             :
-                            <div className=" flex items-center justify-between gap-5 bg-[#f0f4f9] px-5 py-2 sm:py-2.5 rounded-[50px] ">
+                            <div className=" flex items-center justify-between gap-5 bg-[#f0f4f9] px-5 py-2 sm:py-2.5 rounded-full ">
                                 <input
                                     onChange={(e) => setInput(e.target.value)}
                                     value={input}
@@ -171,7 +180,7 @@ const Main = () => {
                                 <div>{input ? <img className="w-10 sm:w-11 p-2 bg-black rounded-full flex items-center justify-center cursor-pointer hover:opacity-65" onClick={()=>setShowLogin(true)} src={assets.send_arrow} alt="" /> : null}</div>
                             </div>}
                             <p className="hidden sm:block text-[10px] sm:text-[13px] text-center mt-[12px]">
-                                We're continuously making improvements. Share any <a className="underline underline-offset-2 hover:opacity-65" href="">feedback or suggestions</a> to help enhance your
+                                We're continuously making improvements. Share any <a className="underline cursor-pointer underline-offset-2 hover:opacity-65" onClick={openContact}>feedback or suggestions</a> to help enhance your
                                 experience.
                             </p>
                         </div>
@@ -182,6 +191,7 @@ const Main = () => {
                             <div className="result-title ">
                                 <p>{recentPrompt}</p>
                             </div>
+
 
                             <div className="result-data">
                                 {loading ? (
@@ -198,17 +208,31 @@ const Main = () => {
                         {
                         user && resultData ?
                         <div className="fixed left-1/2 transform -translate-x-1/2 max-w-[900px] flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
-                            <button
-                                onClick={() => navigate("/export")}
-                                className="flex max-w-[500px] items-center justify-center bg-[#1DB954] text-white rounded-[50px] w-full text-lg py-3 hover:opacity-65"
-                                >
-                                Export to Spotify
-                            </button>
+                            <div className="w-full flex flex-row items-center gap-5 ">
+                                <button
+                                    onClick={() => navigate("/export")}
+                                    className="flex max-w-[500px] items-center justify-center bg-[#1DB954] text-white rounded-[50px] w-full text-lg py-3 hover:opacity-65"
+                                    >
+                                    Export to Spotify
+                                </button>
+                                {isVisible && (
+                                    <>
+                                    <img
+                                        id="regenerate"
+                                        className="w-7 h-7 items-center cursor-pointer justify-center hover:opacity-65"
+                                        src={assets.regenerate_icon}
+                                        onClick={regenerate}
+                                        alt="Regenerate"
+                                    />
+                                    <Tooltip anchorSelect="#regenerate" content="Regenerate Playlist" />
+                                    </>
+                                )}                                
+                            </div>
                             <p className="hidden sm:block text-[10px] sm:text-[13px] text-center mt-[12px]">
                                 We're continuously making improvements. Share any{" "}
                                 <a
-                                    className="underline underline-offset-2 hover:opacity-65"
-                                    href=""
+                                    className="underline cursor-pointer underline-offset-2 hover:opacity-65"
+                                    onClick={openContact}
                                 >
                                     feedback or suggestions
                                 </a>{" "}

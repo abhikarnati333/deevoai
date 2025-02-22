@@ -16,10 +16,13 @@ const ContextProvider = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [credit, setCredit] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [selectedSongs, setSelectedSongs] = useState(() => {
         const savedSongs = localStorage.getItem('selectedSongs');
         return savedSongs ? JSON.parse(savedSongs) : [];
     });
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
         localStorage.setItem('selectedSongs', JSON.stringify(selectedSongs));
@@ -40,10 +43,10 @@ const ContextProvider = (props) => {
         let response;
         if (prompt !== undefined) {
             response = await generatePlaylist(prompt);
-            setRecentPrompt(prompt);
+            setRecentPrompt(prompt); // Store the current prompt
         } else {
             setPrevPrompts((prev) => [...prev, input]);
-            setRecentPrompt(input);
+            setRecentPrompt(input); // Store the current input
             response = await generatePlaylist(input);
         }
         console.log("Generated playlist response:", response);
@@ -51,8 +54,29 @@ const ContextProvider = (props) => {
         setLoading(false);
         setInput("");
     };
+    
+    const regenerate = async () => {
+        setIsVisible(false); // Hide the button after click
+        setResultData(""); // Clear previous data
+        setLoading(true);
+        setShowResult(true);
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+        let response;
+        if (recentPrompt) {
+            response = await reGeneratePlaylist(recentPrompt);
+        } else {
+            console.error("No recent prompt available for regeneration.");
+            setLoading(false);
+            setIsVisible(true); // Show button again if there's an error
+            return;
+        }
+
+        console.log("Regenerated playlist response:", response);
+        setResultData(response); // Update resultData
+        setLoading(false);
+    };
+    
+
 
     const generatePlaylist = async (prompt) => {
         try {
@@ -156,8 +180,11 @@ const ContextProvider = (props) => {
         logout,
         generatePlaylist,
         reGeneratePlaylist,
-        selectedSongs, // Add selectedSongs to context
-        setSelectedSongs, // Add setSelectedSongs to context
+        regenerate,
+        isVisible,
+        setIsVisible,
+        selectedSongs,
+        setSelectedSongs,
     };
 
     return (
