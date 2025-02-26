@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../context/Context";
 import Contact from "../components/Contact/Contact";
+import { assets } from "../assets/assets";
 
 const TermsOfService = () => {
   const { navigate, setShowLogin, user } = useContext(Context);
