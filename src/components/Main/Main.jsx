@@ -100,7 +100,7 @@ const Main = () => {
                             </div>
                         </div>
                         <div>
-                            <button className="pr-5 pb-5 mb-10 underline underline-offset-2 cursor-pointer float-right hover:opacity-65" onClick={openCardModal}>+ More Suggestions</button>
+                            <button className="pr-5 pb-5 underline underline-offset-2 cursor-pointer float-right hover:opacity-65" onClick={openCardModal}>+ More Suggestions</button>
 
                             {isCardModalOpen && (
                                 <div className="cardModal-overlay fixed w-full h-full flex justify-center items-center pointer-events-auto z-[1000] left-0 top-0 bg-black/50 " onClick={closeCardModal}>

@@ -85,7 +85,7 @@ const Settings = ({ isOpen, closeMenu }) => {
                     </li>
                     <li className="flex items-center bg-[#f0f4f9] text-base text-[#202020] transition-[background-color] duration-[0.3s] mb-2 p-2.5 rounded-lg">
                         <img className="w-5 mr-2" src={assets.version_icon} alt="" /> 
-                        <span>Deevo Version 1.0.2</span>
+                        <span>Deevo Version 1.0.3</span>
                     </li>
                 </ul>
                 { user ?

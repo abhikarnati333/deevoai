@@ -4,6 +4,7 @@ import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 import Settings from "../Settings/Settings";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(false);
@@ -32,6 +33,16 @@ const Sidebar = () => {
     setShowSettings(false);
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        toast.success('Text Copied to Clipboard');
+      })
+      .catch(err => {
+        toast.error('Error copying text: ', err);
+      });
+  };
+
   return (
     <>
       <div 
@@ -49,11 +60,11 @@ const Sidebar = () => {
             <div className="recent">
               <p className="recent-title">Recent Playlists</p>
               {prevPrompts.map((item, index) => (
-                <div key={index} onClick={() => loadPrompt(item)} className="recent-entry">
-                  <img src={assets.chat_icon} alt="Message Icon" />
-                  <p>{item.slice(0, 15)}...</p>
-                  
-                </div>
+              <div id="recent-entry" key={index} onClick={() => copyToClipboard(item)} className="recent-entry">
+                <img src={assets.chat_icon} alt="Message Icon" />
+                <p>{item.slice(0, 15)}...</p>
+                <Tooltip anchorSelect="#recent-entry" content="Copy Prompt"/>
+              </div>
               ))}
             </div>
           )}
