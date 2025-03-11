@@ -6,12 +6,14 @@ import { assets } from '../../assets/assets';
 import { Context } from '../../context/Context';
 
 const Result = () => {
-  const { resultData, selectedSongs, setSelectedSongs } = useContext(Context); // Use context for selectedSongs
+  const { resultData, selectedSongs, setSelectedSongs } = useContext(Context);
   const [songDetails, setSongDetails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     if (resultData) {
+      setDescription(extractDescription(resultData)); // Extract the description
       searchSongs(resultData);
     }
   }, [resultData]);
@@ -32,25 +34,30 @@ const Result = () => {
               limit: 1,
             },
           });
-          
 
           const track = response.data.tracks.items[0];
           return {
             id: track.id,
             name: track.name,
             artist: track.artists.map((artist) => artist.name).join(', '),
-            albumCover: track.album.images[0]?.url || '', // Fallback if no image
+            albumCover: track.album.images[0]?.url || '',
           };
         })
       );
 
       setSongDetails(results);
-      setSelectedSongs(results); // Default all songs selected
+      setSelectedSongs(results);
     } catch (error) {
       console.error('Error fetching song details:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const extractDescription = (input) => {
+    const regex = /(.*?)(?=\n"|$)/s;
+    const match = input.match(regex);
+    return match ? match[1].trim() : "";
   };
 
   const parseInput = (input) => {
@@ -76,11 +83,18 @@ const Result = () => {
     );
   };
 
+  
+
   return (
     <div className="App">
       {loading && <p>Loading...</p>}
       {songDetails.length > 0 && (
         <>
+          {description && (
+            <div className="text-left flex w-fit sm:max-w-[70%] bg-[#f0f4f9] rounded-[10px] p-[10px] mb-10">
+              <p className="">{description}</p>
+            </div>
+          )}
           <div className="flex flex-col gap-5 animate-[fadeIn_1.5s]">
             {songDetails.map((song) => (
               <div
@@ -109,12 +123,18 @@ const Result = () => {
               </div>
             ))}
           </div>
+
           <div className="opacity-70 text-center m-3">
             <h2>
               {selectedSongs.length} / {songDetails.length} Songs Selected
             </h2>
           </div>
         </>
+      )}
+      {songDetails.length === 0 && !loading && (
+        <div className="text-center flex w-fit bg-[#f0f4f9] rounded-[10px] p-[10px]">
+          <h2>No songs found. Please check your input.</h2>
+        </div>
       )}
     </div>
   );

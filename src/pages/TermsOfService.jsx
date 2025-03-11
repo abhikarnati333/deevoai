@@ -13,7 +13,7 @@ const TermsOfService = () => {
     <div className="flex-1 min-h-screen relative">
       <Contact isOpen={isContactOpen} closeMenu={closeContact} />
       {/* Header Section */}
-      <header className="sticky top-0 sm:top-5 rounded-b-xl">
+      <header className="sticky top-0 sm:top-5 px-5">
         <div className="flex justify-between items-center text-xl sm:text-2xl p-5 sm:p-3 px-5 text-[#202020] mx-auto sm:max-w-5xl sm:border sm:border-[#222]/10 sm:rounded-2xl bg-white">
           <div className="flex items-center">
             <p

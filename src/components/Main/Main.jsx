@@ -39,10 +39,10 @@ const Main = () => {
         setInput(text);
         closeCardModal();
     };
-
+    
 
     return (
-        <div className="flex-1 min-h-screen relative">
+        <div className="flex-1 min-h-screen relative overflow-hidden">
             <Settings isOpen={isSettingsOpen} closeMenu={closeSettingsMenu} />
             <Contact isOpen={isContactOpen} closeMenu={closeContact} />
             <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020]">
@@ -92,8 +92,8 @@ const Main = () => {
                             <div className="h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("A Romantic Dinner Under the Stars")}>
                                 <p className="text-[#202020] text-[17px]">A Romantic Dinner Under the Stars</p>
                             </div>
-                            <div className="h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb] hidden sm:block" onClick={() => handleCardClick("A Nostalgic Trip Down Memory Lane")}>
-                                <p className="text-[#202020] text-[17px]">A Nostalgic Trip Down Memory Lane</p>
+                            <div className="h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb] hidden sm:block" onClick={() => handleCardClick("A Dance Party in My Living Room")}>
+                                <p className="text-[#202020] text-[17px]">A Dance Party in My Living Room</p>
                             </div>
                             <div className="h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb] hidden sm:block" onClick={() => handleCardClick("An Intense Workout Session with Rap")}>
                                 <p className="text-[#202020] text-[17px]">An Intense Workout Session with Rap</p>
@@ -119,8 +119,8 @@ const Main = () => {
                                             </button>
                                         </div>
                                         <div className=" grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-5 p-5 animate-[fadeIn_1.5s]">
-                                            <div className="card h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("Dance Party in My Living Room")}>
-                                                <p className="text-[#202020] text-[17px]">A Dance Party in My Living Room</p>
+                                            <div className="card h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("Modern country songs for my cowboy era")}>
+                                                <p className="text-[#202020] text-[17px]">Modern country songs for my cowboy era</p>
                                             </div>
                                             <div className=" h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("For a Late-Night Study Session")}>
                                                 <p className="text-[#202020] text-[17px]">A Late-Night Study Session</p>
@@ -134,8 +134,8 @@ const Main = () => {
                                             <div className=" h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("Unwinding After a Long Day")}>
                                                 <p className="text-[#202020] text-[17px]">Unwinding After a Long Day</p>
                                             </div>
-                                            <div className=" h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("Creative Flow and Inspiration")}>
-                                                <p className="text-[#202020] text-[17px]">Creative Flow and Inspiration</p>
+                                            <div className=" h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("A Nostalgic Trip Down Memory Lane")}>
+                                                <p className="text-[#202020] text-[17px]">A Nostalgic Trip Down Memory Lane</p>
                                             </div>
                                             <div className=" h-auto p-[15px] bg-[#f0f4f9] rounded-lg relative cursor-pointer hover:bg-[#e2e6eb]" onClick={() => handleCardClick("Celebrating Life’s Small Wins")}>
                                                 <p className="text-[#202020] text-[17px]">Celebrating Life’s Small Wins</p>
@@ -207,8 +207,8 @@ const Main = () => {
                         </div>
                         {
                         user && resultData ?
-                        <div className="fixed left-1/2 transform -translate-x-1/2 max-w-[900px] flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
-                            <div className="w-full flex flex-row items-center gap-5 ">
+                        <div className="absolute flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
+                            <div className=" w-full flex flex-row items-center gap-5 ">
                                 <button
                                     onClick={() => navigate("/export")}
                                     className="flex max-w-[500px] items-center justify-center bg-[#1DB954] text-white rounded-[50px] w-full text-lg py-3 hover:opacity-65"
@@ -216,16 +216,15 @@ const Main = () => {
                                     Export to Spotify
                                 </button>
                                 {isVisible && (
-                                    <>
-                                    <img
-                                        id="regenerate"
-                                        className="w-7 h-7 items-center cursor-pointer justify-center hover:opacity-65"
-                                        src={assets.regenerate_icon}
-                                        onClick={regenerate}
-                                        alt="Regenerate"
-                                    />
-                                    <Tooltip anchorSelect="#regenerate" content="Regenerate Playlist" />
-                                    </>
+                                    <div onClick={regenerate} className="bg-[#f0f4f9] p-2 rounded-full cursor-pointer ">
+                                        <img
+                                            id="regenerate"
+                                            className="w-9 hover:opacity-65"
+                                            src={assets.regenerate_icon}
+                                            alt="Regenerate"
+                                        />
+                                        <Tooltip anchorSelect="#regenerate" content="Regenerate Playlist" />
+                                    </div>
                                 )}                                
                             </div>
                             <p className="hidden sm:block text-[10px] sm:text-[13px] text-center mt-[12px]">
