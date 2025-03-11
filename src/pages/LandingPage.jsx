@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { assets, faq, plans } from "../assets/assets";
 import { Context } from "../context/Context";
 import Contact from "../components/Contact/Contact";
+import ReactGA from "react-ga4";
 
 const LandingPage = () => {
   const { navigate, setShowLogin } = useContext(Context);
@@ -11,6 +12,10 @@ const LandingPage = () => {
 
   // State to track which FAQ is open
   const [openFAQ, setOpenFAQ] = useState(0);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/login", title: "Login Page" })
+  }, []);
 
   // Toggle FAQ visibility
   const toggleFAQ = (index) => {

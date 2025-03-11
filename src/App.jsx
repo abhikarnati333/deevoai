@@ -16,6 +16,10 @@ import ExportPlaylist from "./pages/ExportPlaylist";
 import Loginpage from "./pages/LandingPage";
 import Verify from "./pages/Verify";
 import Soundwaves from "./pages/Soundwaves";
+import ReactGA from "react-ga4";
+
+const trackingID = import.meta.env.VITE_GA_TRACKING_ID; 
+ReactGA.initialize(trackingID)
 
 const App = () => {
   const { showLogin, user } = useContext(Context);
