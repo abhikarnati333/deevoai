@@ -4,6 +4,7 @@ import { Context } from "../context/Context";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { loadStripe } from '@stripe/stripe-js'
+import ReactGA from'react-ga'
 
 const BuyCredit = () => {
   const { user, backendUrl, token, setShowLogin, navigate } = useContext(Context);
@@ -23,6 +24,10 @@ const BuyCredit = () => {
       toast.error(error.message)
     }
   }
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/credits", title: "Credits Page" })
+  }, []);
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center mx-auto px-4 sm:px-6 lg:px-8 mb-16">

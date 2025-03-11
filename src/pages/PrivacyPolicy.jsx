@@ -1,14 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../context/Context";
 import Contact from "../components/Contact/Contact";
 import { assets } from "../assets/assets";
-
+import ReactGA from "react-ga4"
 
 const PrivacyPolicy = () => {
   const { navigate, setShowLogin, user } = useContext(Context);
   const [isContactOpen, setisContactOpen] = useState(false);
   const openContact = () => setisContactOpen(true);
   const closeContact = () => setisContactOpen(false);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/privacy-policy", title: "Privacy Policy Page" })
+  }, []);
 
   return (
     <div className="flex-1 min-h-screen relative">

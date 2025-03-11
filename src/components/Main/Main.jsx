@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
@@ -17,6 +17,10 @@ const Main = () => {
             onSent();
         }
     };
+
+    useEffect(() => {
+        ReactGA.send({ hitType: "pageview", page: "/", title: "Main Page" })
+      }, []);
 
     const [isCardModalOpen, setisCardModalOpen] = useState(false);
     const [isSettingsOpen, setisSettingsOpen] = useState(false);

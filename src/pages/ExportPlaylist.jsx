@@ -3,6 +3,7 @@ import { Context } from "../context/Context";
 import Settings from "../components/Settings/Settings";
 import { assets } from "../assets/assets";
 import { toast } from "react-toastify";
+import ReactGA from "react-ga4";
 
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -20,6 +21,10 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
     return accumulator;
   }, {});
 };
+
+useEffect(() => {
+  ReactGA.send({ hitType: "pageview", page: "/export", title: "Export Page" })
+}, []);
 
 const ExportToSpotify = () => {
   const { user, credit, selectedSongs, navigate, setShowLogin } =

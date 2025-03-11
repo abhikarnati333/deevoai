@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../context/Context";
 import Contact from "../components/Contact/Contact";
 import { assets } from "../assets/assets";
+import ReactGA from "react-ga4";
 
 const TermsOfService = () => {
   const { navigate, setShowLogin, user } = useContext(Context);
@@ -9,6 +10,10 @@ const TermsOfService = () => {
   const openContact = () => setisContactOpen(true);
   const closeContact = () => setisContactOpen(false);
 
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/terms-of-service", title: "Terms of Service Page" })
+  }, []);
+  
   return (
     <div className="flex-1 min-h-screen relative">
       <Contact isOpen={isContactOpen} closeMenu={closeContact} />

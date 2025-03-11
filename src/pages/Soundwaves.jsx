@@ -1,7 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Contact from "../components/Contact/Contact";
 import { Context } from "../context/Context";
 import { assets } from "../assets/assets";
+import ReactGA from "react-ga4"
 
 const Soundwaves = () => {
   const { navigate, setShowLogin, user } = useContext(Context);
@@ -9,6 +10,10 @@ const Soundwaves = () => {
   const openContact = () => setisContactOpen(true);
   const closeContact = () => setisContactOpen(false);
   
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/soundwaves", title: "Soundwaves Page" })
+  }, []);
+
   return (
     <div className="flex-1 min-h-screen relative">
       <Contact isOpen={isContactOpen} closeMenu={closeContact} />
