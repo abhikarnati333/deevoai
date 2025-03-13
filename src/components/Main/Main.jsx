@@ -364,7 +364,7 @@ const Main = () => {
               </div>
             </div>
             {user && resultData ? (
-              <div className="absolute flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
+            <div className="fixed left-1/2 transform -translate-x-1/2 max-w-[900px] flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
                 <div className=" w-full flex flex-row items-center gap-5 ">
                   <button
                     onClick={() => navigate("/export")}
