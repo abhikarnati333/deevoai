@@ -23,9 +23,12 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 };
 
 const ExportToSpotify = () => {
-
   useEffect(() => {
-    ReactGA.send({ hitType: "pageview", page: "/export", title: "Export Page" })
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/export",
+      title: "Export Page",
+    });
   }, []);
 
   const { user, credit, selectedSongs, navigate, setShowLogin } =
@@ -142,10 +145,16 @@ const ExportToSpotify = () => {
   return (
     <div className="flex-1 min-h-screen relative">
       {/* Header Section */}
-      <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020]">
+      <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020] fixed top-0 left-0 w-full bg-white">
         <div className="flex items-center">
-          {/* <img className="h-[25px] w-[25px] mr-[7px] cursor-pointer lg:hidden hover:opacity-65"  src={assets.menu_icon} alt="Menu Icon" /> */}
-          <p onClick={() => {navigate("/")}} className="italic cursor-pointer">Deevo</p>
+          <p
+            onClick={() => {
+              navigate("/");
+            }}
+            className="italic cursor-pointer"
+          >
+            Deevo
+          </p>
         </div>
         {user ? (
           <div className="flex items-center gap-2 sm:gap-3">
@@ -168,12 +177,14 @@ const ExportToSpotify = () => {
         ) : (
           <div className="flex items-center gap-2 sm:gap-4">
             <button
-              onClick={() => {setShowLogin(true); navigate('/')}}
+              onClick={() => {
+                setShowLogin(true);
+                navigate("/");
+              }}
               className="bg-[#202020] text-white px-7 py-1 rounded-full text-lg hover:opacity-65"
             >
               Get Started
             </button>
-            {/* <button onClick={()=>setShowLogin("Sign Up")} className="bg-[#f0f4f9] text-[#202020] px-7 py-1 rounded-full text-lg hover:opacity-65">Sign Up</button> */}
           </div>
         )}
 
@@ -181,67 +192,78 @@ const ExportToSpotify = () => {
       </div>
 
       {/* Main Content Section */}
-      {user ?
-      <div className="flex items-center justify-center p-5 min-h-[calc(100vh-150px)]">
-        <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-xl overflow-hidden w-full max-w-[900px] items-center">
-          <div className="flex flex-col lg:w-2/3 w-full p-6">
-            <h1 className="text-3xl sm:text-4xl font-medium mb-4 text-[#202020]">
-              Export Playlist
-            </h1>
-            <p className="text-sm sm:text-base text-[#202020] mb-5">
-              Status: {status}
-            </p>
-            {!token ? (
-              <button
-                onClick={handleLogin}
-                className="px-6 py-2 text-lg bg-green-500 text-white rounded-full hover:opacity-65"
-              >
-                Log in to Spotify
-              </button>
-            ) : (
-              <>
-                <input
-                  type="text"
-                  placeholder="Enter playlist name"
-                  value={playlistName}
-                  onChange={(e) => setPlaylistName(e.target.value)}
-                  className="w-full px-4 py-2 mb-4 border rounded-lg"
-                />
+      {user ? (
+        <div className="flex items-center justify-center p-5 min-h-[calc(100vh-150px)]">
+          <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-xl overflow-hidden w-full max-w-[900px] items-center">
+            <div className="flex flex-col lg:w-2/3 w-full p-6">
+              <h1 className="text-3xl sm:text-4xl font-medium mb-4 text-[#202020]">
+                Export Playlist
+              </h1>
+              <p className="text-sm sm:text-base text-[#202020] mb-5">
+                Status: {status}
+              </p>
+              {!token ? (
                 <button
-                  onClick={createPlaylist}
-                  className="w-full px-4 py-2 text-lg bg-blue-500 text-white rounded-full hover:opacity-65"
+                  onClick={handleLogin}
+                  className="px-6 py-2 text-lg bg-green-500 text-white rounded-full hover:opacity-65"
                 >
-                  Create Playlist
+                  Log in to Spotify
                 </button>
-              </>
-            )}
-          </div>
-          <div className="fixed left-1/2 transform -translate-x-1/2 max-w-[900px] flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
-            <button
-              onClick={() => navigate("/")}
-              className="flex max-w-[500px] items-center justify-center bg-[#f0f4f9] rounded-[50px] w-full text-lg py-3 hover:opacity-65"
-            >
-              Create another playlist
-            </button>
-            <p className="hidden sm:block text-[10px] sm:text-[13px] text-center mt-[12px]">
-              We're continuously making improvements. Share any{" "}
-              <a
-                className="underline underline-offset-2 hover:opacity-65"
-                href=""
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    placeholder="Enter playlist name"
+                    value={playlistName}
+                    onChange={(e) => setPlaylistName(e.target.value)}
+                    className="w-full px-4 py-2 mb-4 border rounded-lg"
+                  />
+                  <button
+                    onClick={createPlaylist}
+                    className="w-full px-4 py-2 text-lg bg-blue-500 text-white rounded-full hover:opacity-65"
+                  >
+                    Create Playlist
+                  </button>
+                </>
+              )}
+            </div>
+            <div className="fixed left-1/2 transform -translate-x-1/2 max-w-[900px] flex flex-col bottom-0 w-full mx-auto my-[15px] px-5 py-0 justify-center items-center">
+              <button
+                onClick={() => navigate("/")}
+                className="flex max-w-[500px] items-center justify-center bg-[#f0f4f9] rounded-[50px] w-full text-lg py-3 hover:opacity-65"
               >
-                feedback or suggestions
-              </a>{" "}
-              to help enhance your experience.
-            </p>
+                Create another playlist
+              </button>
+              <p className="hidden sm:block text-[10px] sm:text-[13px] text-center mt-[12px]">
+                We're continuously making improvements. Share any{" "}
+                <a
+                  className="underline underline-offset-2 hover:opacity-65"
+                  href=""
+                >
+                  feedback or suggestions
+                </a>{" "}
+                to help enhance your experience.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      :
-      <div className="flex mt-10 items-center justify-center text-lg">
-        <p>Please <button onClick={() => {setShowLogin(true); navigate('/')}} className="underline underline-offset-2">log in</button> to create a playlist.</p>
-      </div>
-      }
-  
+      ) : (
+        <div className="flex mt-10 items-center justify-center text-lg">
+          <p>
+            Please{" "}
+            <button
+              onClick={() => {
+                setShowLogin(true);
+                navigate("/");
+              }}
+              className="underline underline-offset-2"
+            >
+              log in
+            </button>{" "}
+            to create a playlist.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
