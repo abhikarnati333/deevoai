@@ -8,6 +8,7 @@ import AdvancedOptions from "../AdvancedOptions/AdvancedOptions";
 import Contact from "../Contact/Contact";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import ReactGA from "react-ga4";
 
 const Main = () => {
     const { onSent, recentPrompt, showResult, loading, resultData, setInput, input, user, setShowLogin, navigate, credit, regenerate, isVisible } = useContext(Context);

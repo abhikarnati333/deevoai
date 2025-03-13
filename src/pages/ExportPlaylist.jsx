@@ -22,11 +22,12 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
   }, {});
 };
 
-useEffect(() => {
-  ReactGA.send({ hitType: "pageview", page: "/export", title: "Export Page" })
-}, []);
-
 const ExportToSpotify = () => {
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/export", title: "Export Page" })
+  }, []);
+
   const { user, credit, selectedSongs, navigate, setShowLogin } =
     useContext(Context);
 
