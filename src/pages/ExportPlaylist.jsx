@@ -144,8 +144,10 @@ const ExportToSpotify = () => {
 
   return (
     <div className="flex-1 min-h-screen relative">
+      <Settings isOpen={isSettingsOpen} closeMenu={closeSettingsMenu} />
+
       {/* Header Section */}
-      <div className="z-50 flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020] fixed top-0 left-0 w-full bg-white">
+      <div className="flex justify-between items-center text-xl sm:text-2xl p-[22px] text-[#202020] fixed top-0 left-0 w-full bg-white">
         <div className="flex items-center">
           <p
             onClick={() => {
@@ -187,13 +189,11 @@ const ExportToSpotify = () => {
             </button>
           </div>
         )}
-
-        <Settings isOpen={isSettingsOpen} closeMenu={closeSettingsMenu} />
       </div>
 
       {/* Main Content Section */}
       {user ? (
-        <div className="flex items-center justify-center p-5 min-h-[calc(100vh-150px)]">
+        <div className="flex items-center justify-center p-5 min-h-[calc(100vh-100px)]">
           <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-xl overflow-hidden w-full max-w-[900px] items-center">
             <div className="flex flex-col lg:w-2/3 w-full p-6">
               <h1 className="text-3xl sm:text-4xl font-medium mb-4 text-[#202020]">
