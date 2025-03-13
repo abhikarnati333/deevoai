@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster, toast} from "sonner"
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 
@@ -26,7 +25,7 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer position="top-center" theme="light" />
+      <Toaster position="top-center" richColors/>
 
       {showLogin && <Login />}
 

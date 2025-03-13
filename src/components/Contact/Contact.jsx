@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 
 const Contact = ({ isOpen, closeMenu }) => {
   const [email, setEmail] = useState("");

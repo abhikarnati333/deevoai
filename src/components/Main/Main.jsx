@@ -6,7 +6,7 @@ import Result from "../Result/Result";
 import Settings from "../Settings/Settings";
 import AdvancedOptions from "../AdvancedOptions/AdvancedOptions";
 import Contact from "../Contact/Contact";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 import { Tooltip } from "react-tooltip";
 import ReactGA from "react-ga4";
 

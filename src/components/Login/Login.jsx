@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../../context/Context';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { Toaster, toast} from "sonner"
 
 const Login = () => {
   const [state, setState] = useState('Login'); // 'Login', 'Sign Up', 'Reset Password'

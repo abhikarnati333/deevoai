@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Context } from "../context/Context";
-import { toast } from 'react-toastify';
+import { Toaster, toast} from "sonner"
 
 const Verify = () => {
 

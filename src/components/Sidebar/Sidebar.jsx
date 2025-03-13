@@ -3,7 +3,7 @@ import './Sidebar.css';
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/Context";
 import Settings from "../Settings/Settings";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 import { Tooltip } from "react-tooltip";
 
 const Sidebar = () => {

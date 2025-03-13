@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { plans } from "../assets/assets";
 import { Context } from "../context/Context";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 import axios from "axios";
 import { loadStripe } from '@stripe/stripe-js'
 import ReactGA from'react-ga4'

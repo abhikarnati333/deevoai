@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/Context";
 import Settings from "../components/Settings/Settings";
 import { assets } from "../assets/assets";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 import ReactGA from "react-ga4";
 
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;

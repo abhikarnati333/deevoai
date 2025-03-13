@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Settings.css";
 import { Context } from "../../context/Context";
 import { assets } from "../../assets/assets";
-import { toast } from "react-toastify";
+import { Toaster, toast} from "sonner"
 import Contact from "../Contact/Contact";
 
 const Settings = ({ isOpen, closeMenu }) => {
