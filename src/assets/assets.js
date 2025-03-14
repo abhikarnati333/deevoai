@@ -78,14 +78,14 @@ export const plans = [
     },
     {
         id: 'Explorer [Popular]',
-        price: 5.59,
+        price: 6.59,
         credits: 10,
         desc: 'Designed for frequent users seeking great value and more options.'
     },
     {
         id: 'Pro',
         price: 14.59,
-        credits: 35,
+        credits: 30,
         desc: 'Tailored for consistent users who rely on our service for regular needs.'
     }
 
