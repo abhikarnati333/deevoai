@@ -61,6 +61,10 @@ const Settings = ({ isOpen, closeMenu }) => {
                 <p className="text-[#202020] text-sm mt-[7px] mb-[5px]">Feedback</p>
                 <ul className="settings-list m-0 p-0">
                     <li onClick={openContact} className="flex items-center bg-[#f0f4f9] text-base text-[#202020] cursor-pointer transition-[background-color] duration-[0.3s] mb-2 p-2.5 rounded-lg hover:bg-[#dfe4ea]">
+                        <img className="w-5 mr-2" src={assets.feedback_icon} alt="" />
+                        <span>Feedback</span>
+                    </li>
+                    <li onClick={openContact} className="flex items-center bg-[#f0f4f9] text-base text-[#202020] cursor-pointer transition-[background-color] duration-[0.3s] mb-2 p-2.5 rounded-lg hover:bg-[#dfe4ea]">
                         <img className="w-5 mr-2" src={assets.contact_icon} alt="" />
                         <span>Contact</span>
                     </li>
