@@ -1,8 +1,40 @@
-# React + Vite
+# 🎧 Deevo AI – Discover Music with AI-Curated Playlists
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deevo is an AI-powered web app that transforms natural language prompts into curated Spotify playlists. Just describe your vibe—like “midnight drive with mellow synths” or “upbeat indie for focus”—and Deevo delivers a tailored playlist in seconds.
 
-Currently, two official plugins are available:
+🟢 Built with:
+- React, TailwindCSS
+- Node.js, Express, MongoDB
+- Google Gemini API, Spotify Web API
+- JWT Auth + Spotify OAuth
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+## 🌐 Live Demo  
+👉 [Try Deevo](https://deevoai.onrender.com)
+
+## 📖 Full Case Study  
+For a deep dive into the build process, design thinking, and challenges solved:  
+👉 [Read the Case Study](https://abhikarnati.com/deevo.html)
+
+---
+
+## 🧠 How It Works
+
+1. User submits a prompt (e.g., “lofi beats under rainy skies”)
+2. Gemini API generates a curated list of matching songs
+3. Spotify API fetches metadata and handles playlist export
+4. MongoDB stores prompt data and playlist logs
+
+---
+
+## 🚀 What's Next
+
+- Prompt history & saved playlists  
+- Playlist sharing & community curation  
+- Audio-based emotion detection  
+- Dashboard UI for power users
+
+---
+
+## 👋 Built by [Abhi Karnati](https://www.abhikarnati.com)
